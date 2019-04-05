@@ -1,7 +1,54 @@
 #include <stdio.h>
 
+
 int main() 
 {
+
+  //this series of code allows to encrypt a message.
+  
+  char m[100], ltr; //declare variables.
+  int i, k;
+  
+  printf("Please enter a message to encrypt: "); //prompt user to type message to be encrypted.
+  scanf ("%s", &m); //store typed message in a string.
+  printf("Please enter a roation amount between -25 to 25: "); prompt user to enter the desired rotation amount in the range of -25 to 25
+  scanf("%d", &k); //sroe the roation amount as an integer
+  
+  for (i = 0; m[i] != '\0'; ++i)
+  {
+      ltr = m[i];
+  }
+      
+     if (ltr >= 'a' && ltr <= 'z')
+  {
+      ltr = ltr + k;
+  
+  }
+   
+      if(ltr > 'z') 
+      {
+       ltr = ltr - 'z'  + 'a' - 1;
+       
+       m[i] = ltr;
+      }
+ else if (ltr >= 'A' && ltr <= 'Z')
+ {
+     ltr = ltr + k;
+ }
+
+     
+     if(ltr > 'Z')
+     {
+         
+         ltr = ltr - 'Z' + 'A' - 1;
+         
+ }
+        m[i] = ltr;
+    }
+
+}
+ 
+ printf ("The encrypted message is: %s", m);
 
 
 return 0;
