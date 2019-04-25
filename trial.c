@@ -1,28 +1,28 @@
 #include <stdio.h>
 
-char encrypt_rot(char in, int key)
+char encrypt_ltr(char alpha, int key)
 {
-  if (in >= 'A' && in <= 'Z')
+  if (alpha >= 'A' && alpha <= 'Z')
   {
-      in = ((in-'A') + key) % 26 + 'A';
+      alpha = ((alpha-'A') + key) % 26 + 'A';
   }
-  else if(in >= 'a' && in <= 'z')
+  else if(alpha >= 'a' && alpha <= 'z')
   {
-      in = ((in-'a') + key) % 26 + 'a';
+      alpha = ((alpha-'a') + key) % 26 + 'a';
   }
 
-  return in;
+  return alpha;
 }
 
 
-void encryptphrase(char phrase[], int key)
+void encrypt_text(char text[], int key)
 {
   int i = 0;
-  char c ;
-  while (c = phrase[i])
+  char result ;
+  while (result = text[i])
   {
-    c = encryptchar(c, key);
-    phrase[i] = c;
+    result = encrypt_ltr(result, key);
+    text[i] = result;
     i++;
   }
 }
@@ -31,14 +31,15 @@ void encryptphrase(char phrase[], int key)
 int main()
 {
   int key;
-  char phrase[100];
+  char text[100];
 
-  printf("Enter shift amount (1-25):\n");
+  printf("PLease enter message to be encrypted:\n");
+  scanf("%s", text);
+  
+  printf("Please enter the key:\n");
   scanf("%d", &key);
-
-  printf("Enter message to be encrypted:\n");
-  scanf("%s", phrase);
-  encryptphrase(phrase, key);
-  printf("%s\n", phrase);
+  
+  encrypt_text(text, key);
+  printf("The encrypted message is: %s\n", text);
   return 0;
 }
