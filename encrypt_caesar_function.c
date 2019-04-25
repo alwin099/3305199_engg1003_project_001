@@ -1,31 +1,8 @@
 #include <stdio.h>
 
+//function prototypes
 char encrypt_ltr(char alpha, int key)
-{
-  if (alpha >= 'A' && alpha <= 'Z')
-  {
-      alpha = ((alpha-'A') + key) % 26 + 'A';
-  }
-  else if(alpha >= 'a' && alpha <= 'z')
-  {
-      alpha = ((alpha-'a') + key) % 26 + 'a';
-  }
-
-  return alpha;
-}
-
-
 void encrypt_text(char text[], int key)
-{
-  int i = 0;
-  char result ;
-  while (result = text[i])
-  {
-    result = encrypt_ltr(result, key);
-    text[i] = result;
-    i++;
-  }
-}
 
 
 int main()
@@ -52,4 +29,34 @@ int main()
   encrypt_text(text, key); //call the function to encrypt the message.
   printf("The encrypted message is: %s\n", text); //display the encrypted message.
   return 0;
+}
+
+
+//this function encrypts one single letter at a time, considering both lower case and upper case.
+char encrypt_ltr(char alpha, int key) 
+{
+  if (alpha >= 'A' && alpha <= 'Z')
+  {
+      alpha = ((alpha-'A') + key) % 26 + 'A';
+  }
+  else if(alpha >= 'a' && alpha <= 'z')
+  {
+      alpha = ((alpha-'a') + key) % 26 + 'a';
+  }
+
+  return alpha;
+}
+
+
+//this function encrypts a message, which consists of encrypting every letter of that message.
+void encrypt_text(char text[], int key)
+{
+  int i = 0;
+  char result ;
+  while (result = text[i])
+  {
+    result = encrypt_ltr(result, key);
+    text[i] = result;
+    i++;
+  }
 }
