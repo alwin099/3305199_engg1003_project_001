@@ -19,7 +19,7 @@ int main()
   scanf("%d", &key);
   
   //loop to check if the key that is entered is between 0 and 26.
-    if (key <= 0 || key >= 26) 
+    if (key <= 0 || key >= 27) 
     {
 		printf("Error, please make sure the key is between 0 and 26"); //displays an error message if the key is out of the range (0 - 26).
 		return 0; //exits the program due to error.
