@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
 
 
 //function prototypes
@@ -13,7 +11,7 @@ char* decrypt_sub(char *text, char cipher_alpha[]);
 int locate_index(char cipher_alpha[], char alpha_locate)
     {
   for(int k = 0 ; k < 26; k ++){
-    if(cipher_alpha[k] == alpha_locate // compares between the letters in the text and the substitution alphabet.
+    if(cipher_alpha[k] == alpha_locate) // compares between the letters in the text and the substitution alphabet.
     {
       return k;
     }
@@ -61,3 +59,4 @@ int main()
   
   return 0;
 }
+
