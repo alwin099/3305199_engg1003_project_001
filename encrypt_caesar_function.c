@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 //function prototypes
- char encrypt_ltr(char alpha, int key);
- void decrypt_text(char text[], int key);
+char encrypt_ltr(char alpha, int key); 
+void encrypt_text(char text[], int key);
 
 
 int main()
@@ -12,8 +12,8 @@ int main()
   int key;
   char text[100];
 
-  printf("PLease enter message to be decrypted:\n"); //prompts user to type the message to be decrypted.
-  scanf("%[^\n]s", text); //stores input into the variable text, which is a string.
+  printf("PLease enter message to be encrypted:\n"); //prompts user to type the message to be encrypted.
+  scanf("%99[^\n]s", text); //stores input into the variable text, which is a string.
   
   printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
   scanf("%d", &key);
@@ -23,32 +23,33 @@ int main()
     {
 		printf("Error, please make sure the key is between 0 and 26"); //displays an error message if the key is out of the range (0 - 26).
 		return 0; //exits the program due to error.
+    
     }
   
-  decrypt_text(text, key); //call the function to decrypt the message.
-  printf("The decrypted message is: %s\n", text); //display the decrypted message.
+  encrypt_text(text, key); //call the function to encrypt the message.
+  printf("The encrypted message is: %s\n", text); //display the encrypted message.
   return 0;
 }
 
 
-//this function decrypts one single letter at a time, considering both lower case and upper case.
+//this function encrypts one single letter at a time, considering both lower case and upper case.
 char encrypt_ltr(char alpha, int key) 
 {
   if (alpha >= 'A' && alpha <= 'Z') //considers upper case letters.
   {
-      alpha = ((alpha-'A') - key) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
+      alpha = ((alpha-'A') + key) % 26 + 'A'; //encrypts a letter by adding the particular key to the ASCII value.
   }
   else if(alpha >= 'a' && alpha <= 'z') //considers lower case letters.
   {
-      alpha = ((alpha-'a') - key) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
+      alpha = ((alpha-'a') + key) % 26 + 'a'; //encrypts a letter by adding the particular key to the ASCII value.
   }
 
-  return alpha; //returns the decrypted letters.
+  return alpha; //returns the encrypted letters.
 }
 
 
-//this function decrypts a message, which consists of decrypting every letter of that message.
-void decrypt_text(char text[], int key)
+//this function encrypts a message, which consists of encrypting every letter of that message.
+void encrypt_text(char text[], int key)
 {
   // declare and or initialise variables.
   int i = 0;
@@ -61,6 +62,10 @@ void decrypt_text(char text[], int key)
     i++;
   }
 }
+
+
+
+
 
 
 
