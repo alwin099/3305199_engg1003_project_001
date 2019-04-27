@@ -12,8 +12,8 @@ int main()
   int key;
   char text[100];
 
-  printf("PLease enter message to be encrypted:\n"); //prompts user to type the message to be encrypted.
-  scanf("%99[^\n]s", text); //stores input into the variable text, which is a string.
+  printf("Please enter message to be encrypted:\n"); //prompts user to type the message to be encrypted.
+  scanf("%99[^\n]", text); //stores input into the variable text, which is a string.
   
   printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
   scanf("%d", &key);
@@ -62,9 +62,6 @@ void encrypt_text(char text[], int key)
     i++;
   }
 }
-
-
-
 
 
 
