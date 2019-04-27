@@ -13,7 +13,7 @@ int main()
   char text[100];
 
   printf("Please enter message to be decrypted:\n"); //prompts user to type the message to be decrypted.
-  scanf("%99[^\n]s", text); //stores input into the variable text, which is a string.
+  scanf("%99[^\n]", text); //stores input into the variable text, which is a string.
   
   printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
   scanf("%d", &key);
@@ -36,11 +36,11 @@ char decrypt_ltr(char alpha, int key)
 {
   if (alpha >= 'A' && alpha <= 'Z') //considers upper case letters.
   {
-      alpha = ((alpha-'A') - key) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
-  }
+      alpha = ((alpha-'A') - key + 26) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
+  }                                               //the 26 ensures that the value is positive before the modulo operator is applied and is removed by the modulo operator.
   else if(alpha >= 'a' && alpha <= 'z') //considers lower case letters.
   {
-      alpha = ((alpha-'a') - key) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
+      alpha = ((alpha-'a') - key + 26) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
   }
 
   return alpha; //returns the decrypted letters.
@@ -61,6 +61,11 @@ void decrypt_text(char text[], int key)
     i++;
   }
 }
+
+
+
+
+
 
 
 
