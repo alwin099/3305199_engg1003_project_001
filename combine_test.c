@@ -3,6 +3,7 @@
 #include <string.h>
 #include <conio.h> //this library allows to use clrscr().
 
+
 //function prototypes
 int rotation();
 char encrypt_ltr(char alpha, int key);
@@ -18,7 +19,7 @@ char* decrypt_sub(char *text, char cipher_alpha[]);
 
 int main()
 {
-        //declare variable
+        //Declare variable
         int prime_option;
     
         //Displays the main menu to select between the two cyptography methods.
@@ -29,20 +30,20 @@ int main()
         printf("To exit the program, enter 3\n");
         scanf("%d", &prime_option); //Stores the user's choice as an integer in the variable prime_option.
     
-        clrscr(); //clears the screen once an appropriate choice from the menu has been made.
+        clrscr(); //Clears the screen once an appropriate choice from the menu has been made.
     
         //This loop determines which sub-menu to direct the user to based on their initial choice.
-        if(prime_option == 1) //if the user's initial choice is 1, they are directed to the rotation cipher menu.
+        if(prime_option == 1) //If the user's initial choice is 1, they are directed to the rotation cipher menu.
     {
-        rotation();
+        rotation(); //This function executes the rotation cipher operations.
     }   
     
-        else if (prime_option == 2) //if the user's initial choice is 2, they are directed to the substitution cipher menu.
+        else if (prime_option == 2) //If the user's initial choice is 2, they are directed to the substitution cipher menu.
     {
-        substitution();
+        substitution(); //This function executes the substitution cipher operations.
     } 
     
-        else if(prime_option == 3) //if the user's initial choice is 4, the program exits.
+        else if(prime_option == 3) //If the user's initial choice is 4, the program exits.
     {
         return(0);
     } 
@@ -55,10 +56,10 @@ int main()
 } 
  
 
-//This function displays the rotation cipher menu and its operations. 
+//This function executes the rotation cipher menu and its operations. 
 int rotation()
 {
-        //declare variables.
+        //Declare variables.
         int key, rot_option;
         char text[100];
     
@@ -68,30 +69,31 @@ int rotation()
         printf("To encrypt the message enter 1.\n");
         printf("To decrypt the message enter 2.\n");
         printf("To exit the program enter 3.\n");
-        scanf("%d", &rot_option); //store the user's choice as an integer in the variable rot_option.
+        scanf("%d", &rot_option); //Stores the user's choice as an integer in the variable rot_option.
     
-        clrscr(); //clears the screen once an appropriate choice from the menu has been made.
+        clrscr(); //Clears the screen once an appropriate choice from the menu has been made.
 
 
         if(rot_option == 1) //Executes if the user has entered 1 from the rotation cipher menu, signifying encryption.
     {
         
-        printf("Please enter message to be encrypted:\n"); //prompts user to type the message to be encrypted.
-        scanf("%99[^\n]", text); //stores input into the variable text, which is a string.
+        printf("Please enter the message to be encrypted:\n"); //Prompts the user to type the message to be encrypted.
+        while (getchar()!='\n'); //Clears the input buffer.
+        scanf("%99[^\n]", text); //Stores input into the variable text, which is a string, [^\n] allows to read whitespace.
   
-        printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
-        scanf("%d", &key);
+        printf("Please enter the key:\n"); //Prompts the user to the enter the value by which the alphabet is rotated.
+        scanf("%d", &key); //Stores the value of the key in the variable key, which is an integer datatype.
   
-        //loop to check if the key that is entered is between 0 and 26.
+        //Loop to check if the key that is entered is between 0 and 26.
         if (key <= 0 || key >= 27) 
         {
-		printf("Error, please make sure the key is between 0 and 26\n"); //displays an error message if the key is out of the range (0 - 26).
-		return(0); //exits the program due to error.
+		printf("Error, please make sure the key is between 0 and 26\n"); //Displays an error message if the key is out of the range (0 - 26).
+		return(0); //Exits the program due to error.
     
         }
   
-        encrypt_text(text, key); //call the function to encrypt the message.
-        printf("The encrypted message is: %s\n", text); //display the encrypted message.
+        encrypt_text(text, key); //Call the function encrypt_text to encrypt the message.
+        printf("The encrypted message is: %s\n", text); //Display the encrypted message.
          
     }
      
@@ -99,25 +101,26 @@ int rotation()
         if(rot_option == 2) //Executes if the user has entered 2 from the rotation cipher menu, signifying decryption.
     {
     
-        printf("Please enter message to be decrypted:\n"); //prompts user to type the message to be decrypted.
-        scanf("%99[^\n]", text); //stores input into the variable text, which is a string.
+        printf("Please enter the message to be decrypted:\n"); //Prompts the user to type the message to be decrypted.
+        while (getchar()!='\n'); //Clears the input buffer.
+        scanf("%99[^\n]", text); //Stores input into the variable text, which is a string, [^\n] allows to read whitespace.
   
-        printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
-        scanf("%d", &key);
+        printf("Please enter the key:\n"); //Prompts the user to the enter the value by which the alphabet is rotated.
+        scanf("%d", &key); //Stores the value of the key in the variable key, which is an integer datatype.
   
-        //loop to check if the key that is entered is between 0 and 26.
+        //Loop to check if the key that is entered is between 0 and 26.
         if (key <= 0 || key >= 27) 
         {
-		printf("Error, please make sure the key is between 0 and 26\n"); //displays an error message if the key is out of the range (0 - 26).
-		return 0; //exits the program due to error.
+		printf("Error, please make sure the key is between 0 and 26\n"); //Displays an error message if the key is out of the range (0 - 26).
+		return 0; //Exits the program due to error.
         }
   
-        decrypt_text(text, key); //call the function to decrypt the message.
-        printf("The decrypted message is: %s\n", text); //display the decrypted message. 
+        decrypt_text(text, key); //Call the function decrypt_text to decrypt the message.
+        printf("The decrypted message is: %s\n", text); //Display the decrypted message. 
     }
     
      
-        if(rot_option == 3) //Executes if the user has entered 3 from the rotation cipher menu signfiying exiting the program.
+        if(rot_option == 3) //Executes if the user has entered 3 from the rotation cipher menu signifying exiting the program.
     {
         return(0);   
     }
@@ -125,15 +128,15 @@ int rotation()
  }
  
  
-//This function displays the subsituion cipher menu and its operations. 
+//This function executes the subsituion cipher menu and its operations. 
 int substitution()
 {
-        //Declare variables.
+        //Declare and or initialise variables.
         int sub_option;
         char text[100];
-        char cipher_alpha[26] = {'h','g','q','t','y','p','l','j','m','d','w','i','z','x','c','f','s','o','r','b','n','u','a','k','v','e'};  
+        char cipher_alpha[26] = {'h','g','q','t','y','p','l','j','m','d','w','i','z','x','c','f','s','o','r','b','n','u','a','k','v','e'}; //The substitution cipher alphabet.
 
-        //Displays the Substitution cipher menu.
+        //Displays the substitution cipher menu.
         printf("*****Welcome to the Substitution Cipher program****");
         printf("\nPlease choose the following options:\n");
         printf("To encrypt the message enter 1.\n");
@@ -149,6 +152,7 @@ int substitution()
     {
         
         printf("Please enter the message to be encrypted\n"); //prompts user to type text to encrypt.
+        while (getchar()!='\n');
         scanf("%99[^\n]", text); //stores input in the variable text, which is a string.
   
         char *encrypted_text = encrypt_sub(text, cipher_alpha); //calls the function to decrypt the text.
@@ -162,6 +166,7 @@ int substitution()
     {
     
         printf("Please enter the message to be decrypted\n"); //prompts user to enter a text to decrypt.
+        while (getchar()!='\n');
         scanf("%99[^\n]", text); //stores input in the variable text, which is a string.
   
         char *decrypted_text = decrypt_sub(text, cipher_alpha); //calls the function to decrypt the text.
@@ -180,8 +185,9 @@ int substitution()
 
     //Function definitions.
     
-    //this function encrypts one single letter at a time, considering both lower case and upper case.
+    //this function encrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
     char encrypt_ltr(char alpha, int key) 
+    
     {
         if (alpha >= 'A' && alpha <= 'Z') //considers upper case letters.
     {
@@ -196,8 +202,9 @@ int substitution()
     }
 
 
-    //this function encrypts a message, which consists of encrypting every letter of that message.
+    //this function encrypts (rotation cipher) a message, which consists of encrypting every letter of that message.
     void encrypt_text(char text[], int key)
+    
     {
         // declare and or initialise variables.
         int i = 0;
@@ -213,7 +220,7 @@ int substitution()
     
     
     
-    //this function decrypts one single letter at a time, considering both lower case and upper case.
+    //this function decrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
     char decrypt_ltr(char alpha, int key) 
     
     {
@@ -230,7 +237,7 @@ int substitution()
     }
 
 
-    //this function decrypts a message, which consists of decrypting every letter of that message.
+    //this function decrypts (rotation cipher) a message, which consists of decrypting every letter of that message.
     void decrypt_text(char text[], int key)
     
     {
@@ -248,11 +255,13 @@ int substitution()
     
     
     
-    //this function acquires the cipher index of each letter in the text.
+    //this function acquires the cipher index (substitution cipher) of each letter in the text.
+    //used for both encryption and decryption of a substitution cipher.
     int locate_index(char cipher_alpha[], char alpha_locate)
     
     {
-        for(int k = 0 ; k < 26; k ++){
+        for(int k = 0 ; k < 26; k ++)
+    {
         if(cipher_alpha[k] == alpha_locate) //compares between the letters in the text and the substitution alphabet.
     {
         return k;
@@ -261,7 +270,7 @@ int substitution()
         return -1;
 } 
  
-  
+     //this function decrypts (substitution cipher) the entered text.
     char* encrypt_sub(char *text,char cipher_alpha[]) //Function prototype.
     
     {
@@ -285,8 +294,9 @@ int substitution()
     
     
     
-        //this function decrypts the entered text.
-        char *decrypt_sub(char *text,char cipher_alpha[]) 
+    //this function decrypts (substitution cipher) the entered text.
+    char *decrypt_sub(char *text,char cipher_alpha[]) 
+    
     { 
         int txtlength = strlen(text); // Acquire length of the text using the strlen function.
         char *decrypted_text = (char *) malloc(sizeof(char)*txtlength);
@@ -311,3 +321,4 @@ int substitution()
         
 
   
+
