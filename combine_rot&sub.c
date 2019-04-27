@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <string.h>
+#include <conio.h> //this library allows to use clrscr().
+
 
 //function prototypes
 char encrypt_ltr(char alpha, int key);
@@ -16,26 +19,30 @@ int main()
     int option, key;
     char text[100];
     char cipher_alpha[26] = {'h','g','q','t','y','p','l','j','m','d','w','i','z','x','c','f','s','o','r','b','n','u','a','k','v','e'}; //substitution alphabet.
-   
+    
     printf("****Welcome to the encryption and decryption program****");
     printf("\nPlease choose the following options: \n");
     printf("To encrypt a message using a rotation cipher with a key, enter 1\n");
     printf("To decrypt a message using a rotation cipher with a key, enter 2\n");
     printf("To encrypt a message using a substitution cipher, enter 3\n");
     printf("To decrypt a message using a substitution cipher, enter 4\n");
-    printf("To exit the program enter 5\n");
+    printf("To exit the program, enter 5\n");
     scanf("%d", &option);
     
+    clrscr(); //clears the screen once an appropriate choice from the menu has been made.
     
     switch(option)
-{
-      
-      //executes if users enters 1  
-      case 1:  
     {
       
+      //executes if users enters 1  
+    case 1:  
+        
+    {
+       
         printf("Please enter message to be encrypted:\n"); //prompts user to type the message to be encrypted.
-        scanf("%99[^\n]", text); //stores input into the variable text, which is a string.
+        while(getchar()!='\n');//stores input into the variable text, which is a string.
+        scanf("%99[^\n]s", text);
+        
         printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
         scanf("%d", &key);
   
@@ -53,10 +60,11 @@ int main()
     }
     
     
-        case 2:
+    case 2:
     {
         
         printf("Please enter message to be decrypted:\n"); //prompts user to type the message to be decrypted.
+        while(getchar()!='\n');
         scanf("%99[^\n]", text); //stores input into the variable text, which is a string.
   
         printf("Please enter the key:\n"); //prompts user to the enter the value by which the alphabet is rotated.
@@ -76,43 +84,47 @@ int main()
     }
      
      
-        case 3:
+    case 3:
     {
            
-        printf("Please enter the text to be encrypted\n"); //prompts user to type text to encrypt.
+        printf("Please enter the message to be encrypted\n"); //prompts user to type text to encrypt.
+        while(getchar()!='\n');
         scanf("%99[^\n]", text); //stores input in the variable text, which is a string.   
+        
         char *encrypted_text = encrypt_sub(text, cipher_alpha); //calls the function to decrypt the text.
-        printf("The encrypted text is: %s\n", encrypted_text); //displays the decrypted text.    
+        printf("The encrypted message is: %s\n", encrypted_text); //displays the decrypted text.    
         
         break;    
     }
      
      
-        case 4:
+    case 4:
     {
         
-        printf("Please enter the text to be decrypted\n"); //prompts user to enter a text to decrypt.
+        printf("Please enter the message to be decrypted\n"); //prompts user to enter a text to decrypt.
+        while(getchar()!='\n');
         scanf("%99[^\n]", text); //stores input in the variable text, which is a string.
+        
         char *decrypted_text = decrypt_sub(text, cipher_alpha); //calls the function to decrypt the text.
-        printf("The decrypted text is: %s\n", decrypted_text); //displays the decrypted text.
+        printf("The decrypted message is: %s\n", decrypted_text); //displays the decrypted text.
       
         break;
     }
         
         
-        case 5:
+    case 5:
     {
         return(0);
         break;
     }
     
     
-        default:    
+    default:    
     {
         printf("Please choose a valid option\n");   
     }
         
-}    
+    }    
  return 0;
 }
     
@@ -156,11 +168,11 @@ int main()
     {
     if (alpha >= 'A' && alpha <= 'Z') //considers upper case letters.
     {
-      alpha = ((alpha-'A') - key) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
+      alpha = ((alpha-'A') - key + 26) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
     }
     else if(alpha >= 'a' && alpha <= 'z') //considers lower case letters.
     {
-      alpha = ((alpha-'a') - key) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
+      alpha = ((alpha-'a') - key + 26) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
     }
 
     return alpha; //returns the decrypted letters.
@@ -239,4 +251,9 @@ int main()
   return decrypted_text; //Return the decrypted text to the function.
 }    
         
-      
+        
+
+
+
+
+     
