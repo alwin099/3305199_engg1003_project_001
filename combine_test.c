@@ -219,11 +219,11 @@ int substitution()
     {
         if (alpha >= 'A' && alpha <= 'Z') //considers upper case letters.
     {
-         alpha = ((alpha-'A') - key) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
-    }
+         alpha = ((alpha-'A') - key + 26) % 26 + 'A'; //decrypts a letter by subtracting the particular key to the ASCII value.
+    }                                                 //the 26 (- key +26) ensures that the value is positive before the modulo operator is applied and is removed by the modulo operator.    
         else if(alpha >= 'a' && alpha <= 'z') //considers lower case letters.
     {
-        alpha = ((alpha-'a') - key) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
+        alpha = ((alpha-'a') - key + 26) % 26 + 'a'; //decrypts a letter by subtracting the particular key to the ASCII value.
     }
 
         return alpha; //returns the decrypted letters.
@@ -288,7 +288,7 @@ int substitution()
         //this function decrypts the entered text.
         char *decrypt_sub(char *text,char cipher_alpha[]) 
     { 
-        int txtlength = strlen(text); //Acquire length of the text using the strlen function.
+        int txtlength = strlen(text); // Acquire length of the text using the strlen function.
         char *decrypted_text = (char *) malloc(sizeof(char)*txtlength);
     
   
