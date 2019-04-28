@@ -1,6 +1,6 @@
-#include <stdio.h>
-    #include <stdlib.h>
     #include <string.h>
+    #include <stdio.h>
+    #include <stdlib.h>
     #include <conio.h> //This library allows to use clrscr().
 
 
@@ -21,7 +21,7 @@
     int locate_index(char cipher_alpha[], char alpha_locate);
     char* encrypt_sub(char *text, char cipher_alpha[]);
     char* decrypt_sub(char *text, char cipher_alpha[]);
-
+    void upr_strng(char s[]);
 
     int main()
     {
@@ -102,6 +102,7 @@
     }
   
         encrypt_text(text, key); //Call the function encrypt_text to encrypt the message.
+        upr_strng(text); //Converts string to upper case.
         printf("The encrypted message is: %s\n", text); //Display the encrypted message.
          
     }
@@ -125,6 +126,7 @@
     }
   
         decrypt_text(text, key); //Call the function decrypt_text to decrypt the message.
+        upr_strng(text); //Converts string to upper case.
         printf("The decrypted message is: %s\n", text); //Display the decrypted message. 
     }
     
@@ -168,6 +170,7 @@
         scanf("%99[^\n]", text); //Stores the input in the variable text, which is a string, [^\n] allows to read whitespace .
   
         char *encrypted_text = encrypt_sub(text, cipher_alpha); //Calls the function encrypt_sub to decrypt the message.
+        upr_strng(encrypted_text); //Converts string to upper case.
         printf("The encrypted message is: %s\n", encrypted_text); //Display the encrypted message. 
 
     }
@@ -182,6 +185,7 @@
         scanf("%99[^\n]", text); //Stores the input in the variable text, which is a string, [^\n] allows to read whitespace.
   
         char *decrypted_text = decrypt_sub(text, cipher_alpha); //Calls the function decrypt_sub to decrypt the message.
+        upr_strng(decrypted_text); //Converts string to upper case.
         printf("The decrypted message is: %s\n", decrypted_text); //Display the decrypted message. 
 
     }
@@ -347,6 +351,26 @@
     
     return decrypted_text; //Return the decrypted message.
     
+    }
+    
+    
+    //This function converts a string to upper case.
+    void upr_strng(char s[]) 
+    {
+        //Declare variable
+        int i = 0;
+   
+        while (s[i] != '\0') 
+    {
+    
+        if (s[i] >= 'a' && s[i] <= 'z') 
+    
+    {
+        s[i] = s[i] - 32; //The ASCII table shows that lowercase 'a' has a value 97 while uppercase 'A' has a value 65.
+                         //So, to convert from lower-case to upper-case, subtract 32:
+    }
+        i++;
+    }
     }
     
     
