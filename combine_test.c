@@ -61,11 +61,14 @@ int main()
     }
  
 } 
+
  
 
-//This function executes the rotation cipher menu and its operations. 
-int rotation()
-{
+    //This function executes the rotation cipher menu and its operations. 
+    //In this method each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
+    //The key is the number of positions by which the alphabet is shifted
+    int rotation()
+    {
         //Declare variables.
         int key, rot_option;
         char text[100];
@@ -92,7 +95,8 @@ int rotation()
         scanf("%d", &key); //Stores the value of the key in the variable key, which is an integer datatype.
   
         //Loop to check if the key that is entered is between 0 and 26.
-        if (key <= 0 || key >= 27) 
+        //If the key is 26, it implies no encryption.
+        if (key <= -1 || key >= 27) 
         {
 		printf("Error, please make sure the key is between 0 and 26\n"); //Displays an error message if the key is out of the range (0 - 26).
 		return(0); //Exits the program due to error.
@@ -116,7 +120,7 @@ int rotation()
         scanf("%d", &key); //Stores the value of the key in the variable key, which is an integer datatype.
   
         //Loop to check if the key that is entered is between 0 and 26.
-        if (key <= 0 || key >= 27) 
+        if (key <= -1 || key >= 27) 
         {
 		printf("Error, please make sure the key is between 0 and 26\n"); //Displays an error message if the key is out of the range (0 - 26).
 		return 0; //Exits the program due to error.
@@ -133,9 +137,12 @@ int rotation()
     }
      
  }
+
  
  
 //This function executes the subsituion cipher menu and its operations. 
+//This method uses a fixed substitution over the entire message. 
+//The ciphertext alphabet may be a shifted, reversed or mixed version of the plaintext alphabet.
 int substitution()
 {
         //Declare and or initialise variables.
@@ -190,9 +197,11 @@ int substitution()
      
  }
 
-    //Function definitions.
+
+    //The following are function definitions.
     
     //This function encrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
+    //It outputs a char datatype and takes inputs of a char and int datatypes.
     char encrypt_ltr(char alpha, int key) //Function prototype.
     
     {
@@ -229,20 +238,22 @@ int substitution()
     
     
     //This function decrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
+    //It outputs a char datatype and takes inputs of a char and int datatypes.
     char decrypt_ltr(char alpha, int key) //Function prototype.
     
     {
         if (alpha >= 'A' && alpha <= 'Z') //Considers upper case letters.
     {
          alpha = ((alpha-'A') - key + 26) % 26 + 'A'; //Decrypts a letter by subtracting the particular key to the ASCII value.
-    }                                                 //The 26 (- key +26) ensures that the value is positive before the modulo operator is applied and is removed by the modulo operator.    
+    }                                                 //26 is added to ensure that the value is positive before the modulo operator is applied.    
         else if(alpha >= 'a' && alpha <= 'z') //Considers lower case letters.
     {
         alpha = ((alpha-'a') - key + 26) % 26 + 'a'; //Decrypts a letter by subtracting the particular key to the ASCII value.
-    }                                               //The 26 (- key +26) ensures that the value is positive before the modulo operator is applied and is removed by the modulo operator.
+    }                                               //26 is added to ensure that the value is positive before the modulo operator is applied.
 
         return alpha; //Returns the decrypted letters.
     }
+
 
 
     //This function decrypts (rotation cipher) a message, which consists of decrypting every letter of that message.
@@ -266,6 +277,7 @@ int substitution()
     
     //This function acquires the cipher index (substitution cipher) of each letter in the message.
     //Used for both encryption and decryption of a substitution cipher.
+    //It outputs an int datatype and takes inputs of two variables both of which are char datatypes.
     int locate_index(char cipher_alpha[], char alpha_locate)
     
     {
@@ -279,13 +291,17 @@ int substitution()
         return -1;
 } 
  
-     //This function decrypts (substitution cipher) the entered text.
-    char* encrypt_sub(char *text,char cipher_alpha[]) //Function prototype.
+ 
+ 
+     //This function encrypts (substitution cipher) the entered text.
+    //It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes. 
+    //The asterisk after char implies a pointer to a character.
+    char* encrypt_sub(char *text, char cipher_alpha[]) //Function prototype.
     
     {
         int txtlength = strlen(text); //Acquire length of the text using the strlen function to know how many iterations is required.
-        char *encrypted_text = (char *) malloc(sizeof(char)*txtlength);
-
+        char* encrypted_text = (char *) malloc(sizeof(char)*txtlength);
+       
         //Convert to lower case as it is easier to work with only 26 letters, as opposed to both upper case and lower case.
         // 'a' is subtracted from the text to acquire the encryption index and determine if character is between 0 to 26.
         for(int k = 0; k < txtlength; k++)
@@ -303,14 +319,16 @@ int substitution()
         return encrypted_text; //Return the encrypted message.
 }    
     
-    
-    
+        
+        
     //This function decrypts (substitution cipher) the entered message.
-    char *decrypt_sub(char *text,char cipher_alpha[]) //Function prototype. 
+    //It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes.
+    //The asterisk after char implies a pointer to a character.
+    char* decrypt_sub(char *text,char cipher_alpha[]) //Function prototype. 
     
     { 
         int txtlength = strlen(text); // Acquire length of the text using the strlen function.
-        char *decrypted_text = (char *) malloc(sizeof(char)*txtlength);
+        char* decrypted_text = (char *) malloc(sizeof(char)*txtlength);
     
   
         //Convert to lower case as it is easier to work with only 26 letters, as opposed to both upper case and lower case.
@@ -318,7 +336,8 @@ int substitution()
         for(int k = 0; k < txtlength; k++)
     {
         int decryption_index = tolower(text[k]) - 'a';
-        if(decryption_index >= 0 && decryption_index < 26){
+        if(decryption_index >= 0 && decryption_index < 26)
+    {
         int cipher_alpha_index = locate_index(cipher_alpha, tolower(text[k])); 
         decrypted_text[k] = 'a' + cipher_alpha_index;
     }
@@ -330,3 +349,6 @@ int substitution()
     return decrypted_text; //Return the decrypted message.
 }    
         
+
+
+
