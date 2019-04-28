@@ -1,30 +1,31 @@
-    #include <string.h>
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <conio.h> //This library allows to use clrscr().
+   	#include <stdio.h>
+        #include <string.h>
+        #include <stdlib.h>
+        #include <conio.h> //This library allows to use clrscr().
 
 
-    /* ENGG1003 Programming Assignment 1
-    *  Name: Alwin Wilson
-    *  Student number: 3305199
-    *  Date: 29/4/19
-    *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
+        /* ENGG1003 Programming Assignment 1
+        *  Name: Alwin Wilson
+        *  Student number: 3305199
+        *  Date: 29/4/19
+        *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
 
 
-    //Function prototypes
-    int rotation();
-    char encrypt_ltr(char alpha, int key);
-    void encrypt_text(char text[], int key);
-    char decrypt_ltr(char alpha, int key);
-    void decrypt_text(char text[], int key);
-    int substitution();
-    int locate_index(char cipher_alpha[], char alpha_locate);
-    char* encrypt_sub(char *text, char cipher_alpha[]);
-    char* decrypt_sub(char *text, char cipher_alpha[]);
-    void upr_strng(char s[]);
+        //Function prototypes
+        int rotation();
+        char encrypt_ltr(char alpha, int key);
+        void encrypt_text(char text[], int key);
+        char decrypt_ltr(char alpha, int key);
+        void decrypt_text(char text[], int key);
+        int substitution();
+        int locate_index(char cipher_alpha[], char alpha_locate);
+        char* encrypt_sub(char *text, char cipher_alpha[]);
+        char* decrypt_sub(char *text, char cipher_alpha[]);
+        void upr_strng(char s[]);
 
-    int main()
-    {
+
+int main()
+{
         //Declare variable
         int prime_option;
     
@@ -59,14 +60,14 @@
         printf("Please choose a vaild option"); //Displays if the user has entered an invaid option.
     }
  
-    } 
+} 
 
 
-    //This function executes the rotation cipher menu and its operations. 
-    //In this method each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
-    //The key is the number of positions by which the alphabet is shifted
-    int rotation()
-    {
+//This function executes the rotation cipher menu and its operations. 
+//In this method each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
+//The key is the number of positions by which the alphabet is shifted.
+int rotation()
+{
         //Declare variables.
         int key, rot_option;
         char text[100];
@@ -136,15 +137,14 @@
         return(0);   
     }
      
-    }
+}
 
  
- 
-    //This function executes the subsituion cipher menu and its operations. 
-    //This method uses a fixed substitution over the entire message. 
-    //The ciphertext alphabet may be a shifted, reversed or mixed version of the plaintext alphabet.
-    int substitution()
-    {
+//This function executes the subsituion cipher menu and its operations. 
+//This method uses a fixed substitution over the entire message. 
+//The ciphertext alphabet may be a shifted, reversed or mixed version of the plaintext alphabet.
+int substitution()
+{
         //Declare and or initialise variables.
         int sub_option;
         char text[100];
@@ -197,16 +197,15 @@
         return(0);
     }
      
-    }
+}
 
 
-    //The following are function definitions.
+                    /********************The following are function definitions********************/
     
-    //This function encrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
-    //It outputs a char datatype and takes inputs of a char and int datatypes.
-    char encrypt_ltr(char alpha, int key) //Function prototype.
-    
-    {
+//This function encrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
+//It outputs a char datatype and takes inputs of a char and int datatypes.
+char encrypt_ltr(char alpha, int key) //Function prototype.
+{
         if (alpha >= 'A' && alpha <= 'Z') //Considers upper case letters.
     {
         alpha = ((alpha-'A') + key) % 26 + 'A'; //Encrypts a letter by adding the particular key to the ASCII value.
@@ -217,14 +216,13 @@
     }
 
         return alpha; //Returns the encrypted letters.
-    }
+}
 
 
-    //This function encrypts (rotation cipher) a message, which consists of encrypting every letter of that message.
-    //It uses values from the previous function.
-    void encrypt_text(char text[], int key)
-    
-    {
+//This function encrypts (rotation cipher) a message, which consists of encrypting every letter of that message.
+//It uses values from the previous function.
+void encrypt_text(char text[], int key)
+{
         //Declare and or initialise variables.
         int i = 0;
         char result;
@@ -235,15 +233,13 @@
         text[i] = result; //The result of above calculation is now stored in the string text, which now contains the encrypted message.
         i++;
     }
-    }
+}
     
     
-    
-    //This function decrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
-    //It outputs a char datatype and takes inputs of a char and int datatypes.
-    char decrypt_ltr(char alpha, int key) //Function prototype.
-    
-    {
+//This function decrypts (rotation cipher) one single letter at a time, considering both lower case and upper case.
+//It outputs a char datatype and takes inputs of a char and int datatypes.
+char decrypt_ltr(char alpha, int key) //Function prototype.
+{
         if (alpha >= 'A' && alpha <= 'Z') //Considers upper case letters.
     {
          alpha = ((alpha-'A') - key + 26) % 26 + 'A'; //Decrypts a letter by subtracting the particular key to the ASCII value.
@@ -254,15 +250,13 @@
     }                                               //26 is added to ensure that the value is positive before the modulo operator is applied.
 
         return alpha; //Returns the decrypted letters.
-    }
+}
 
 
-
-    //This function decrypts (rotation cipher) a message, which consists of decrypting every letter of that message.
-    //It uses values from the previous function.
-    void decrypt_text(char text[], int key) //Function prototype.
-    
-    {
+//This function decrypts (rotation cipher) a message, which consists of decrypting every letter of that message.
+//It uses values from the previous function.
+void decrypt_text(char text[], int key) //Function prototype.
+{
         //Declare and or initialise variables.
         int i = 0;
         char result;
@@ -273,16 +267,14 @@
         text[i] = result; //The result of above calculation is now stored in the string text, which now contains the encrypted message.
         i++;
     }
-    }
+}
     
     
-    
-    //This function acquires the cipher index (substitution cipher) of each letter in the message.
-    //Used for both encryption and decryption of a substitution cipher.
-    //It outputs an int datatype and takes inputs of two variables both of which are char datatypes.
-    int locate_index(char cipher_alpha[], char alpha_locate)
-    
-    {
+//This function acquires the cipher index (substitution cipher) of each letter in the message.
+//Used for both encryption and decryption of a substitution cipher.
+//It outputs an int datatype and takes inputs of two variables both of which are char datatypes.
+int locate_index(char cipher_alpha[], char alpha_locate)
+{
         for(int k = 0 ; k < 26; k ++)
     {
         if(cipher_alpha[k] == alpha_locate) //Compares between the letters in the text and the substitution alphabet.
@@ -291,16 +283,14 @@
     }
     }
         return -1;
-    } 
+} 
  
  
- 
-    //This function encrypts (substitution cipher) the entered text.
-    //It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes. 
-    //The asterisk after char implies a pointer to a character.
-    char* encrypt_sub(char *text, char cipher_alpha[]) //Function prototype.
-    
-    {
+//This function encrypts (substitution cipher) the entered text.
+//It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes. 
+//The asterisk after char implies a pointer to a character.
+char* encrypt_sub(char *text, char cipher_alpha[]) //Function prototype.
+{
         int txtlength = strlen(text); //Acquire length of the text using the strlen function to know how many iterations is required.
         char* encrypted_text = (char *) malloc(sizeof(char)*txtlength);
        
@@ -319,16 +309,14 @@
     }
     }
         return encrypted_text; //Return the encrypted message.
-    }    
+}    
     
         
-        
-    //This function decrypts (substitution cipher) the entered message.
-    //It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes.
-    //The asterisk after char implies a pointer to a character.
-    char* decrypt_sub(char *text,char cipher_alpha[]) //Function prototype. 
-    
-    { 
+//This function decrypts (substitution cipher) the entered message.
+//It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes.
+//The asterisk after char implies a pointer to a character.
+char* decrypt_sub(char *text,char cipher_alpha[]) //Function prototype. 
+{ 
         int txtlength = strlen(text); // Acquire length of the text using the strlen function.
         char* decrypted_text = (char *) malloc(sizeof(char)*txtlength);
     
@@ -350,13 +338,12 @@
     }
     
     return decrypted_text; //Return the decrypted message.
+}
     
-    }
     
-    
-    //This function converts a string to upper case.
-    void upr_strng(char s[]) 
-    {
+//This function converts a string to upper case.
+void upr_strng(char s[]) 
+{
         //Declare variable
         int i = 0;
    
@@ -371,6 +358,7 @@
     }
         i++;
     }
-    }
+}
     
     
+                     /********************This marks the end of the written code********************/
