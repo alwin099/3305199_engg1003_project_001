@@ -1,31 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <conio.h> //This library allows to use clrscr().
+    #include <stdlib.h>
+    #include <string.h>
+    #include <conio.h> //This library allows to use clrscr().
 
 
-/* ENGG1003 Programming Assignment 1
-*  Name: Alwin Wilson
-*  Student number: 3305199
-*  Date: 29/4/19
-*  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
+    /* ENGG1003 Programming Assignment 1
+    *  Name: Alwin Wilson
+    *  Student number: 3305199
+    *  Date: 29/4/19
+    *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
 
 
-//Function prototypes
-int rotation();
-char encrypt_ltr(char alpha, int key);
-void encrypt_text(char text[], int key);
-char decrypt_ltr(char alpha, int key);
-void decrypt_text(char text[], int key);
+    //Function prototypes
+    int rotation();
+    char encrypt_ltr(char alpha, int key);
+    void encrypt_text(char text[], int key);
+    char decrypt_ltr(char alpha, int key);
+    void decrypt_text(char text[], int key);
+    int substitution();
+    int locate_index(char cipher_alpha[], char alpha_locate);
+    char* encrypt_sub(char *text, char cipher_alpha[]);
+    char* decrypt_sub(char *text, char cipher_alpha[]);
 
-int substitution();
-int locate_index(char cipher_alpha[], char alpha_locate);
-char* encrypt_sub(char *text, char cipher_alpha[]);
-char* decrypt_sub(char *text, char cipher_alpha[]);
 
-
-int main()
-{
+    int main()
+    {
         //Declare variable
         int prime_option;
     
@@ -60,9 +59,8 @@ int main()
         printf("Please choose a vaild option"); //Displays if the user has entered an invaid option.
     }
  
-} 
+    } 
 
- 
 
     //This function executes the rotation cipher menu and its operations. 
     //In this method each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
@@ -97,11 +95,11 @@ int main()
         //Loop to check if the key that is entered is between 0 and 26.
         //If the key is 26, it implies no encryption.
         if (key <= -1 || key >= 27) 
-        {
+    {
 		printf("Error, please make sure the key is between 0 and 26\n"); //Displays an error message if the key is out of the range (0 - 26).
 		return(0); //Exits the program due to error.
     
-        }
+    }
   
         encrypt_text(text, key); //Call the function encrypt_text to encrypt the message.
         printf("The encrypted message is: %s\n", text); //Display the encrypted message.
@@ -121,10 +119,10 @@ int main()
   
         //Loop to check if the key that is entered is between 0 and 26.
         if (key <= -1 || key >= 27) 
-        {
+    {
 		printf("Error, please make sure the key is between 0 and 26\n"); //Displays an error message if the key is out of the range (0 - 26).
 		return 0; //Exits the program due to error.
-        }
+    }
   
         decrypt_text(text, key); //Call the function decrypt_text to decrypt the message.
         printf("The decrypted message is: %s\n", text); //Display the decrypted message. 
@@ -136,15 +134,15 @@ int main()
         return(0);   
     }
      
- }
+    }
 
  
  
-//This function executes the subsituion cipher menu and its operations. 
-//This method uses a fixed substitution over the entire message. 
-//The ciphertext alphabet may be a shifted, reversed or mixed version of the plaintext alphabet.
-int substitution()
-{
+    //This function executes the subsituion cipher menu and its operations. 
+    //This method uses a fixed substitution over the entire message. 
+    //The ciphertext alphabet may be a shifted, reversed or mixed version of the plaintext alphabet.
+    int substitution()
+    {
         //Declare and or initialise variables.
         int sub_option;
         char text[100];
@@ -195,7 +193,7 @@ int substitution()
         return(0);
     }
      
- }
+    }
 
 
     //The following are function definitions.
@@ -233,7 +231,7 @@ int substitution()
         text[i] = result; //The result of above calculation is now stored in the string text, which now contains the encrypted message.
         i++;
     }
-}
+    }
     
     
     
@@ -270,8 +268,8 @@ int substitution()
         result = decrypt_ltr(result, key); 
         text[i] = result; //The result of above calculation is now stored in the string text, which now contains the encrypted message.
         i++;
-  }
-}
+    }
+    }
     
     
     
@@ -287,13 +285,13 @@ int substitution()
     {
         return k; //Returns the index.
     }
-  }
+    }
         return -1;
-} 
+    } 
  
  
  
-     //This function encrypts (substitution cipher) the entered text.
+    //This function encrypts (substitution cipher) the entered text.
     //It outputs a char datatype and takes inputs of two datatypes both of which are char datatypes. 
     //The asterisk after char implies a pointer to a character.
     char* encrypt_sub(char *text, char cipher_alpha[]) //Function prototype.
@@ -315,9 +313,9 @@ int substitution()
     {
         encrypted_text[k] = text[k]; 
     }
-  }
+    }
         return encrypted_text; //Return the encrypted message.
-}    
+    }    
     
         
         
@@ -345,10 +343,10 @@ int substitution()
     {
         decrypted_text[k] = text[k];
     }
-  }
+    }
+    
     return decrypted_text; //Return the decrypted message.
-}    
-        
-
-
-
+    
+    }
+    
+    
