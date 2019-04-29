@@ -1,26 +1,26 @@
-        /* ENGG1003 Programming Assignment 1
-        *  Name: Alwin Wilson
-        *  Student number: 3305199
-        *  Date: 29/4/19
-        *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
+          /* ENGG1003 Programming Assignment 1
+    *  Name: Alwin Wilson
+    *  Student number: 3305199
+    *  Date: 29/4/19
+    *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
         
-        //List of libraries used.
-        #include <stdio.h>
-        #include <string.h> //Used for string handling.
-        #include <stdlib.h>
-        #include <conio.h> //This library allows to use clrscr().
+    //List of libraries used.
+    #include <stdio.h>
+    #include <string.h> //Used for string handling.
+    #include <stdlib.h>
+    #include <conio.h> //This library allows to use clrscr().
         
 
-        //Function prototypes
-        int rot(); //Rotation cipher menu and operations.
-        char encrypt_ltr(char ltr, int key); //Encrypts each letter in the message.
-        void encrypt_text(char text[], int key); //Encrypts a whole message by using values from encrypt_ltr
-        char decrypt_ltr(char ltr, int key); //Decrypts each letter in the message.
-        void decrypt_text(char text[], int key); //Decrypts a whole messsage by using values from decrypt_ltr.
-        int sub(); //Substitution cipher menu and operations.
-        int locate_index(char cipher_alpbt[], char locate_ltr); //Find the cipher index of each letter in the message.
-        char* encrypt_sub(char *text, char cipher_alpbt[]); //Encrypts the entered message.
-        char* decrypt_sub(char *text, char cipher_alpbt[]); //Decrypts the entered message.
+    //Function prototypes
+    int rot(); //Rotation cipher menu and operations.
+    char encrypt_ltr(char ltr, int key); //Encrypts each letter in the message.
+    void encrypt_text(char text[], int key); //Encrypts a whole message by using values from encrypt_ltr
+    char decrypt_ltr(char ltr, int key); //Decrypts each letter in the message.
+    void decrypt_text(char text[], int key); //Decrypts a whole messsage by using values from decrypt_ltr.
+    int sub(); //Substitution cipher menu and operations.
+    int locate_index(char cipher_alpbt[], char locate_ltr); //Find the cipher index of each letter in the message.
+    char* encrypt_sub(char *text, char cipher_alpbt[]); //Encrypts the entered message.
+    char* decrypt_sub(char *text, char cipher_alpbt[]); //Decrypts the entered message.
 
 
 int main()
