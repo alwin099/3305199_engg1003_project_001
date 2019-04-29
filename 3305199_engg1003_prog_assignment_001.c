@@ -4,7 +4,7 @@
         *  Date: 29/4/19
         *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
         
-        //List of Libraries used.
+        //List of libraries used.
         #include <stdio.h>
         #include <string.h> //Used for string handling.
         #include <stdlib.h>
