@@ -1,8 +1,9 @@
-          /* ENGG1003 Programming Assignment 1
+    /* ENGG1003 Programming Assignment 1
     *  Name: Alwin Wilson
     *  Student number: 3305199
     *  Date: 29/4/19
     *  Description: Encrypts and decrypts a message using either a rotation cipher method or a substitution cipher method.*/
+        
         
     //List of libraries used.
     #include <stdio.h>
